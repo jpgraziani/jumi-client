@@ -24,7 +24,7 @@ recipesRouter
 
     store.recipes.push(recipe)
 
-    res.status(201).location(`${process.env.DATABASE_URL}/recipes/${recipe.id}`).json(recipe)
+    res.status(201).location(`http://localhost:8000/api/recipes/${recipe.id}`).json(recipe)
   })
   
 module.exports = recipesRouter;
