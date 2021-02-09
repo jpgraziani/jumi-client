@@ -1,16 +1,18 @@
+const uuid = require('uuid/v4')
+
 const recipes = [
     {
-      "id": 1,
-      "name": "First test recipe!",
-      "created": "2029-01-22T16:28:32.615Z",
-      "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      "ingredients": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-      "main_protein": "Fish",
-      "calories": 400,
-      "protein": 27
+      id: uuid(),
+      name: "First test recipe!",
+      created: "2029-01-22T16:28:32.615Z",
+      directions: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      ingredients: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      main_protein: "Fish",
+      calories: 400,
+      protein: 27
     },
     {
-      "id": 2,
+      "id": uuid(),
       "name": "Second test recipe!",
       "created": "2029-01-22T16:28:32.615Z",
       "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
@@ -20,7 +22,7 @@ const recipes = [
       "protein": 27
     },
     {
-      "id": 3,
+      "id": uuid(),
       "name": "Third test recipe!",
       "created": "2029-01-22T16:28:32.615Z",
       "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
