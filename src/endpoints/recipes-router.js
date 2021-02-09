@@ -24,7 +24,40 @@ recipesRouter
 
     store.recipes.push(recipe)
 
-    res.status(201).location(`http://localhost:8000/api/recipes/${recipe.id}`).json(recipe)
+    res.status(201).location(`${process.env.DATABASE_URL}/recipes/${recipe.id}`).json(recipe)
+  })
+
+recipesRouter
+  .route('/api/recipes/:recipeId')
+  .get((req, res) => {
+    const { recipeId } = req.params
+
+    const recipe = store.recipes.find(item => item.id == recipeId)
+
+    if(!recipe) {
+      return res
+        .status(404)
+        .send('Recipe not found')
+    }
+
+    res.json(recipe)
+  })
+  .delete((req, res) => {
+    const { recipeId } = req.params
+
+    const recipeIndex = store.recipes.findIndex(index => index.id == recipeId)
+
+    if (recipeIndex === -1) {
+      return res
+        .status(404)
+        .send('Recipe not found')
+    }
+
+    store.recipes.splice(recipeIndex, 1)
+
+    res
+      .status(204)
+      .end()
   })
   
 module.exports = recipesRouter;
