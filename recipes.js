@@ -1,5 +1,4 @@
-{
-  "recipes": [
+const recipes = [
     {
       "id": 1,
       "name": "First test recipe!",
@@ -31,4 +30,5 @@
       "protein": 27
     }
   ]
-}
+
+  module.exports = { recipes }
