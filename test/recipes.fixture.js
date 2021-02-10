@@ -7,7 +7,7 @@ function makeRecipesArray() {
       "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "ingredients": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "main_protein": "Fish",
-      "calories": 400,
+      "calories": "400",
       "protein": 27
     },
     {
@@ -17,7 +17,7 @@ function makeRecipesArray() {
       "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "ingredients": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "main_protein": "Beef",
-      "calories": 400,
+      "calories": "400",
       "protein": 27
     },
     {
@@ -27,7 +27,7 @@ function makeRecipesArray() {
       "directions": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "ingredients": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       "main_protein": "Chicken",
-      "calories": 400,
+      "calories": "400",
       "protein": 27
     }
   ]
