@@ -29,7 +29,7 @@ recipesRouter
   })
   .post(bodyParser, (req, res, next) => {
     const { name, created, directions, ingredients, main_protein, protein, calories } = req.body
-    const newRecipe = { id: uuid(), name, created, directions, ingredients, main_protein, protein, calories }
+    const newRecipe = { name, created, directions, ingredients, main_protein, protein, calories }
 
     for (const [key, value] of Object.entries(newRecipe)) {
       if (value == null && key !== 'created') {
