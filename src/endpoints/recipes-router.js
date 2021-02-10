@@ -54,4 +54,39 @@ recipesRouter
       .catch(next)
   })
 
+  recipesRouter
+    .route('/api/recipes/:id')
+    .all((req, res, next) => {
+      RecipesService.getById(
+        req.app.get('db'),
+        req.params.id
+      )
+        .then(recipe => {
+          if (!recipe) {
+            return res.status(404).json({
+              error: {
+                message: `The recipe doesnt exist`
+              }
+            })
+          }
+          res.recipe = recipe
+          next()
+          res.json(serializeRecipe(recipe))
+        })
+        .catch(next)
+    })
+    .get((req, res, next) => {
+      res.json(serializeRecipe(res.recipe))
+    })
+    .delete((req, res, next) => {
+      RecipesService.deleteRecipe(
+        req.app.get('db'),
+        req.params.id
+      )
+      .then(recipes => {
+        res.status(204).json(recipes)
+      })
+      .catch(next)
+    })
+
 module.exports = recipesRouter;
