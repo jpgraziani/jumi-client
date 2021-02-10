@@ -9,5 +9,3 @@ CREATE TABLE recipes (
     protein INTEGER NOT NULL
 );
 
-
-

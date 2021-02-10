@@ -25,7 +25,7 @@ describe('Recipes Endpoints', function() {
   //==================================
 
   //dates keep changing everytime it runs
-  describe.skip(`GET /api/recipes`, () => {
+  describe(`GET /api/recipes`, () => {
     context(`Given no recipes`, () => {
       it(`responds with 200 and an empty list`, () => {
         return supertest(app)
@@ -91,7 +91,7 @@ describe('Recipes Endpoints', function() {
    //==================================
   // POST recipes
   //==================================
-  describe.only(`POST /api/recipes`, () => {
+  describe.skip(`POST /api/recipes`, () => {
     it('creates recipe responding with 201 and the new recipe', () => {
       const newRecipe = {
         name: 'Test new name',
@@ -147,7 +147,7 @@ describe('Recipes Endpoints', function() {
   //==================================
   // DELETE recipes
   //==================================
-  describe.skip(`DELETE /api/recipes/:id`, () => {
+  describe(`DELETE /api/recipes/:id`, () => {
     const testRecipes = makeRecipesArray();
 
     beforeEach('insert recipe', () => {
