@@ -1,9 +1,6 @@
 const path = require('path')
 const express = require('express')
-const uuid = require('uuid/v4')
 const RecipesService = require('./recipes-service')
-const store = require('../../recipes')
-
 const recipesRouter = express.Router()
 const bodyParser = express.json();
 
@@ -35,7 +32,7 @@ recipesRouter
       if (value == null && key !== 'created') {
         return res.status(400).json({
           error: {
-            message: `${key} is required`
+            message: `Missing recipe ${key}`
           }
         })
       }
@@ -65,7 +62,7 @@ recipesRouter
           if (!recipe) {
             return res.status(404).json({
               error: {
-                message: `The recipe doesnt exist`
+                message: `The recipe doesn't exist`
               }
             })
           }

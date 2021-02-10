@@ -5,8 +5,8 @@ CREATE TABLE recipes (
     directions TEXT NOT NULL,
     ingredients TEXT NOT NULL,
     main_protein TEXT NOT NULL,
-    calories INTEGER NOT NULL,
-    protein INTEGER NOT NULL
+    calories NOT NULL,
+    protein NOT NULL
 );
 
 
