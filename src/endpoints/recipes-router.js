@@ -81,7 +81,7 @@ recipesRouter
         req.params.id
       )
       .then(recipes => {
-        res.status(204).json(recipes)
+        res.status(200).json(recipes)
       })
       .catch(next)
     })

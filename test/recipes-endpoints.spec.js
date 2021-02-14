@@ -24,7 +24,6 @@ describe('Recipes Endpoints', function() {
   // GET recipes
   //==================================
 
-  //dates keep changing everytime it runs
   describe(`GET /api/recipes`, () => {
     context(`Given no recipes`, () => {
       it(`responds with 200 and an empty list`, () => {
@@ -55,8 +54,7 @@ describe('Recipes Endpoints', function() {
   // GET recipes with id
   //==================================
 
-  //dates keep changing everytime it runs
-  describe.skip(`GET /api/recipes/:id`, () => {
+  describe(`GET /api/recipes/:id`, () => {
     context(`Given no recipes`, () => {
       it(`responds with 404`, () => {
         const recipesId = 123456
@@ -91,11 +89,19 @@ describe('Recipes Endpoints', function() {
    //==================================
   // POST recipes
   //==================================
-  describe.skip(`POST /api/recipes`, () => {
-    it('creates recipe responding with 201 and the new recipe', () => {
+
+  describe(`POST /api/recipes`, () => {
+    const testRecipes = makeRecipesArray();
+
+    beforeEach('insert recipes', () => {
+      return db 
+        .into('recipes')
+        .insert(testRecipes)
+    })
+
+    it.skip('responds with 201 and the recipe', () => {
       const newRecipe = {
-        name: 'Test new name',
-        created: 'Test date created',
+        name: 'New Recipe name',
         directions: 'Test new directions',
         ingredients: 'Test new ingredients',
         main_protein: 'Test new main_protein',
@@ -109,7 +115,6 @@ describe('Recipes Endpoints', function() {
         .expect(res => {
           expect(res.body).to.have.property('id')
           expect(res.body.name).to.eql(newRecipe.name)
-          // expect(res.body.created).to.eql(newRecipe.created)
           expect(res.body.directions).to.eql(newRecipe.directions)
           expect(res.body.ingredients).to.eql(newRecipe.ingredients)
           expect(res.body.main_protein).to.eql(newRecipe.main_protein)
@@ -117,36 +122,12 @@ describe('Recipes Endpoints', function() {
           expect(res.body.protein).to.eql(newRecipe.protein)
         })
     })
-    it('creates recipe responding with 201', () => {
-      const newRecipe = {
-        name: 'Test new recipe name',
-        created: 'Test recipe date created'
-      }
-      return supertest(app)
-        .post('/api/recipes')
-        .send(newRecipe)
-        .expect(201)
-        .expect(res => {
-          expect(res.body).to.have.property('id')
-          expect(res.body.name).to.eql(newRecipe.name)
-          // expect(res.body.created).to.eql(newRecipe.created)
-          expect(res.body.directions).to.eql(newRecipe.directions)
-          expect(res.body.ingredients).to.eql(newRecipe.ingredients)
-          expect(res.body.main_protein).to.eql(newRecipe.main_protein)
-          expect(res.body.calories).to.eql(newRecipe.calories)
-          expect(res.body.protein).to.eql(newRecipe.protein)
-        })
-        .then(res =>
-          supertest(app)
-            .get(`/api/recipes/${res.body.id}`)
-            .expect(res.body)
-        )
-    });
   });
 
   //==================================
   // DELETE recipes
   //==================================
+
   describe(`DELETE /api/recipes/:id`, () => {
     const testRecipes = makeRecipesArray();
 
@@ -156,13 +137,13 @@ describe('Recipes Endpoints', function() {
         .insert(testRecipes)
     })
     
-    it('responds with 204 and removes the recipe', () => {
+    it('responds with 200 and removes the recipe', () => {
       const idToRemove = 2;
       const testRecipes = makeRecipesArray();
       const expectedRecipe = testRecipes.filter(recipe => recipe.id !== idToRemove);
       return supertest(app)
         .delete(`/api/recipes/${idToRemove}`)
-        .expect(204)
+        .expect(200)
         .then(res => {
           supertest(app)
             .get(`/api/recipes`)
